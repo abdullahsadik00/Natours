@@ -3,6 +3,7 @@ const fs = require('fs');
 const app = exp();
 // middleware
 app.use(exp.json());
+
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
@@ -43,7 +44,6 @@ app.get('/api/v1/tours/:id', (req, res) => {
       message: 'Invaid ID',
     });
   }
-
   res.status(200).json({
     status: 'success',
     data: {
@@ -64,6 +64,20 @@ app.patch('/api/v1/tours/:id', (req, res) => {
     data: 'Data Updated',
   });
 });
+
+app.delete('/api/v1/tours/:id', (req, res) => {
+  if (req.params.id * 1 > tours.length) {
+    res.status(404).json({
+      status: 'fail',
+      message: 'Invaid ID',
+    });
+  }
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Listening to the ${port}`);
