@@ -3,15 +3,22 @@ const fs = require('fs');
 const app = exp();
 // middleware
 app.use(exp.json());
+app.use((req, res, next) => {
+  req.requesTime = new Date().toISOString();
+  console.log('Hello middleware 👋');
+  next();
+});
 
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 // console.log(tours);
 const getAllTours = (req, res) => {
+  console.log(req.requesTime);
   res.status(200).json({
     status: 'success',
     length: tours.length,
+    requestAt: req.requesTime,
     data: {
       tours,
     },
