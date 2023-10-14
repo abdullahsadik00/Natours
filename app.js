@@ -84,6 +84,37 @@ const deleteTour = (req, res) => {
     data: null,
   });
 };
+
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: 'Internal Server Error',
+    message: 'This route not yet defined',
+  });
+};
+const updateAllUsers = (req, res) => {
+  res.status(500).json({
+    status: 'Internal Server Error',
+    message: 'This route not yet defined',
+  });
+};
+const getUser = (req, res) => {
+  res.status(500).json({
+    status: 'Internal Server Error',
+    message: 'This route not yet defined',
+  });
+};
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: 'Internal Server Error',
+    message: 'This route not yet defined',
+  });
+};
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: 'Internal Server Error',
+    message: 'This route not yet defined',
+  });
+};
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', updateAllTours);
 // app.get('/api/v1/tours/:id', getTour);
@@ -99,6 +130,12 @@ app
   .patch(updateTour)
   .delete(deleteTour);
 
+app.route('/api/v1/users').get(getAllUsers).post(updateAllUsers);
+app
+  .route('/api/v1/users/:id')
+  .get(getUser)
+  .patch(updateUser)
+  .delete(deleteUser);
 // Server
 const port = 3000;
 app.listen(port, () => {
